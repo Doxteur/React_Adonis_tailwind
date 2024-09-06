@@ -1,6 +1,8 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Home, Info, Mail, Settings, X, Menu, LogOut } from 'lucide-react';
 import SidebarItem from './SidebarItem';
+import PropTypes from 'prop-types';
+
 
 
 const Sidebar = ({ children }) => {
@@ -52,3 +54,7 @@ const Sidebar = ({ children }) => {
 };
 
 export default Sidebar;
+
+Sidebar.propTypes = {
+  children: PropTypes.node.isRequired,
+};

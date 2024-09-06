@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { logout } from '../app/reducers/AuthReducer';
 import { useNavigate } from 'react-router-dom';
@@ -31,6 +32,14 @@ const SidebarItem = ({ icon, text, isActive, onClick, isLogout = false }) => {
       </button>
     </li>
   );
+};
+
+SidebarItem.propTypes = {
+  icon: PropTypes.node.isRequired,
+  text: PropTypes.string.isRequired,
+  isActive: PropTypes.bool.isRequired,
+  onClick: PropTypes.func.isRequired,
+  isLogout: PropTypes.bool,
 };
 
 export default SidebarItem;

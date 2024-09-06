@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import Register from './pages/Register';
 import Layout from './core/Layout';
 import Admin from './pages/Admin';
+import PropTypes from 'prop-types';
 
 const ProtectedRoute = ({ children }) => {
   const { isAuthenticated } = useSelector((state) => state.auth);
@@ -16,6 +17,7 @@ const ProtectedRoute = ({ children }) => {
 
   return children;
 };
+
 
 const ProtectedAdminRoute = ({ children }) => {
   const { isAuthenticated, user } = useSelector((state) => state.auth);
@@ -55,6 +57,14 @@ const AppRouter = () => {
       </Routes>
     </Router>
   );
+};
+
+ProtectedRoute.propTypes = {
+  children: PropTypes.node.isRequired,
+};
+
+ProtectedAdminRoute.propTypes = {
+  children: PropTypes.node.isRequired,
 };
 
 export default AppRouter;

@@ -47,8 +47,8 @@ export const store = configureStore({
         ignoredPaths: ['items.dates'],
       },
     }).concat(logger),
-  // Enable devTools in development
-  devTools: process.env.NODE_ENV !== 'production',
+  // Utiliser une vérification directe de l'environnement
+  devTools: import.meta.env.MODE !== 'production',
 });
 
 // Create the persistor

@@ -38,7 +38,7 @@ const Login = () => {
               Connexion
             </h1>
             <p className="mt-2 text-sm text-gray-600 dark:text-neutral-400">
-              Vous n'avez pas encore de compte ?
+              Vous n&apos;avez pas encore de compte ?
               <Link
                 className="text-blue-600 decoration-2 hover:underline focus:outline-none focus:underline font-medium dark:text-blue-500"
                 to="/register"
