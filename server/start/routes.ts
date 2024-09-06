@@ -1,7 +1,5 @@
 import Route from '@ioc:Adonis/Core/Route'
-import Database from '@ioc:Adonis/Lucid/Database'
 import AutoSwagger from 'adonis-autoswagger'
-import AuthController from 'App/Controllers/Http/AuthController'
 import swagger from 'Config/swagger'
 import HealthCheck from '@ioc:Adonis/Core/HealthCheck'
 

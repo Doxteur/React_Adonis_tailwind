@@ -37,7 +37,6 @@ Server.middleware.register([
 |
 | and then use it as follows
 |
-| Route.get('dashboard', 'UserController.dashboard').middleware('auth')
 |
 */
 Server.middleware.registerNamed({
