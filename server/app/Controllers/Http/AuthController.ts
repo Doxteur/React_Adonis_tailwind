@@ -21,10 +21,11 @@ export default class AuthController {
 
     try {
       const token = await auth.use("api").attempt(email, password);
+      const user = await User.query().where("id", token.user.id).preload("role").first();
       return response.ok({
         message: "Connexion réussie",
         token: token.token,
-        user: token.user,
+        user: user,
       });
     } catch (error) {
       return response.unauthorized({
@@ -43,7 +44,7 @@ export default class AuthController {
       schema: validationSchema,
     });
     try {
-      const existingUser = await User.findBy("email", email);
+      const existingUser = await User.query().where("email", email).preload("role").first();
       if (existingUser) {
         return response.conflict({
           message: "Utilisateur déjà existant",

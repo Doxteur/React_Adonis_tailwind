@@ -6,13 +6,13 @@ import User from 'App/Models/User'
 
 export default class UsersController {
     public async index({ response }: HttpContextContract) {
-        const users = await User.all()
+        const users = await User.query().preload('role')
         return response.json(users)
     }
 
     public async store({ request, response }: HttpContextContract) {
-        const { name, email, password, role, status } = request.body()
-        const user = await User.create({ name, email, password, role, status })
+        const { name, email, password, roleId, status } = request.body()
+        const user = await User.create({ name, email, password, roleId, status })
         return response.json(user)
     }
 
@@ -22,9 +22,9 @@ export default class UsersController {
     }
 
     public async update({ params, request, response }: HttpContextContract) {
-        const { name, email, password, role, status } = request.body()
+        const { name, email, password, roleId, status } = request.body()
         const user = await User.findOrFail(params.id)
-        user.merge({ name, email, password, role, status })
+        user.merge({ name, email, password, roleId, status })
         await user.save()
         return response.json(user)
     }

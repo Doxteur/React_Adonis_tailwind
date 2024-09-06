@@ -3,12 +3,12 @@ import Database from '@ioc:Adonis/Lucid/Database'
 import AutoSwagger from 'adonis-autoswagger'
 import AuthController from 'App/Controllers/Http/AuthController'
 import swagger from 'Config/swagger'
+import HealthCheck from '@ioc:Adonis/Core/HealthCheck'
+
 
 // Groupe de routes authentifiées
 Route.group(() => {
-  Route.get('/', async () => {
-    return await Database.from('users').select('*')
-  })
+  Route.get('/', 'UsersController.index').as('users.index')
 }).middleware('auth')
 
 // Routes d'authentification
@@ -25,4 +25,12 @@ Route.get('/swagger', async () => {
 })
 Route.get('/docs', async () => {
   return AutoSwagger.ui('/swagger', swagger)
+})
+
+Route.get('health', async ({ response }) => {
+  const report = await HealthCheck.getReport()
+
+  return report.healthy
+    ? response.ok(report)
+    : response.badRequest(report)
 })

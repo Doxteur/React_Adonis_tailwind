@@ -3,7 +3,7 @@ import { Home, Info, Mail, Settings, X, Menu, LogOut } from 'lucide-react';
 import SidebarItem from './SidebarItem';
 
 
-const Sidebar = () => {
+const Sidebar = ({ children }) => {
   const [isOpen, setIsOpen] = useState(true);
   const [activeItem, setActiveItem] = useState('Home');
 
@@ -45,8 +45,7 @@ const Sidebar = () => {
         </nav>
       </aside>
       <main className="flex-1 p-10">
-        <h1 className="text-2xl font-bold text-gray-800">Main Content Area</h1>
-        <p className="mt-2 text-gray-600">Your main content goes here.</p>
+        {children}
       </main>
     </div>
   );
